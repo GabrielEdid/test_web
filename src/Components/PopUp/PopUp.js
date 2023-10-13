@@ -1,15 +1,18 @@
 import React from 'react';
 
-function PopUpLink() {
-    const openLink = () => {
-        window.open('https://www.google.com', '_blank');
-    };
+class PopUp extends React.Component {
+    openWindow = () => {
+        const url = 'https://auth.mercadolibre.com.mx/authorization?response_type=code&client_id=3516733548819218&redirect_uri=https://test-web-gabriel-95557e5aa8fc.herokuapp.com/';
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
 
-    return (
-        <button onClick={openLink}>
-            Abrir Google en nueva ventana
-        </button>
-    );
+    render() {
+        return (
+            <button onClick={this.openWindow}>
+                Abrir enlace
+            </button>
+        );
+    }
 }
 
-export default PopUpLink;
+export default PopUp;
