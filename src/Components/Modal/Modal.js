@@ -24,8 +24,10 @@ export default function Modal() {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Hello Modal</h2>
+            <h2>Agregamos Aqui Dos entradas de texto para el inicio de sesion?</h2>
             <p>
+              Se puede hacer con state, de ahi se agarran esos datos y se hace el request al API...
+              
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
               perferendis suscipit officia recusandae, eveniet quaerat assumenda
               id fugit, dignissimos maxime non natus placeat illo iusto!
