@@ -9,7 +9,7 @@ class PopUp extends React.Component {
     render() {
         return (
             <button onClick={this.openWindow}>
-                Abrir enlace
+                Iniciar Sesion con Mercado Libre
             </button>
         );
     }
