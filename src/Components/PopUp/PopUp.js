@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';  // Importing PropTypes for prop validation.
 
 class PopUp extends React.Component {
     state = {
@@ -17,14 +18,18 @@ class PopUp extends React.Component {
             console.log("User has returned with code:", code);
             console.log("Full redirected URL:", window.location.href);
             
-            // Now, send this code to the function in fetchToken file
-            this.props.sendCodeToFetchToken(code);
-            
             // Update the state with the code
             this.setState({ code });
-        }
-        else {
-            console.log("Oops! Something Happened!")
+
+            // Check if sendCodeToFetchToken is a function before calling it
+            if (typeof this.props.sendCodeToFetchToken === 'function') {
+                this.props.sendCodeToFetchToken(code);
+            } else {
+                console.warn('sendCodeToFetchToken prop is not a function');
+            }
+
+        } else {
+            console.log("Oops! Something Happened!");
         }
     }
 
@@ -41,5 +46,10 @@ class PopUp extends React.Component {
         );
     }
 }
+
+// Define the prop types and expectations for this component.
+PopUp.propTypes = {
+    sendCodeToFetchToken: PropTypes.func.isRequired  // It's expected to be a function and is required.
+};
 
 export default PopUp;
