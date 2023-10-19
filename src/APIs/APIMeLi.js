@@ -8,7 +8,7 @@ export const fetchAccessToken = async (code) => {
         client_id: '3516733548819218',
         grant_type: 'authorization_code',
         client_secret: 'w7sU8woCroDxWxMeqXx5TOI1ETPKHeTr',
-        redirect_uri: 'https://test-web-gabriel-95557e5aa8fc.herokuapp.com/',
+        redirect_uri: 'https://test-web-gabriel-95557e5aa8fc.herokuapp.com/' + code,
         code: code
     };
 
