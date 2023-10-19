@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';  // Importing PropTypes for prop validation.
+import { fetchAccessToken } from './API/APIMeLi';
 
 class PopUp extends React.Component {
     state = {
-        code: null
+        code: null,
+        accessToken: null
     };
 
     openWindow = () => {
@@ -21,12 +22,15 @@ class PopUp extends React.Component {
             // Update the state with the code
             this.setState({ code });
 
-            // Check if sendCodeToFetchToken is a function before calling it
-            if (typeof this.props.sendCodeToFetchToken === 'function') {
-                this.props.sendCodeToFetchToken(code);
-            } else {
-                console.warn('sendCodeToFetchToken prop is not a function');
-            }
+            // Directly fetch the access token using the API function
+            fetchAccessToken(code)
+                .then(token => {
+                    console.log('Successfully fetched access token:', token);
+                    this.setState({ accessToken: token });
+                })
+                .catch(error => {
+                    console.error('Error while fetching the access token:', error);
+                });
 
         } else {
             console.log("Oops! Something Happened!");
@@ -42,14 +46,10 @@ class PopUp extends React.Component {
                 <h1>
                     El Code es: {this.state.code}
                 </h1>
+                {this.state.accessToken && <p>Access Token: {this.state.accessToken}</p>}
             </>
         );
     }
 }
-
-// Define the prop types and expectations for this component.
-PopUp.propTypes = {
-    sendCodeToFetchToken: PropTypes.func.isRequired  // It's expected to be a function and is required.
-};
 
 export default PopUp;
