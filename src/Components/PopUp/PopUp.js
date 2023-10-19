@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchAccessToken } from './API/APIMeLi';
+import { fetchAccessToken } from '../API/APIMeLi';
 
 class PopUp extends React.Component {
     state = {
